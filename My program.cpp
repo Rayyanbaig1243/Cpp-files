@@ -1,4 +1,4 @@
-include <iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <iterator>
@@ -6,7 +6,6 @@ include <iostream>
 #include <vector>
 #include <sstream>
 #include <filesystem>
-
 #include "ThreadPool.h"
 #include "FileReader.h"
 
@@ -17,11 +16,8 @@ int main(void) {
 	std::cin >> findWord;
 	std::cout << "Input filePath(also find all sub directory)>>";
 	std::cin >> filePath;
-
 	auto filePaths = File::FileReader::ReadSubFiles(std::filesystem::path(filePath));
-
 	std::cout << "========== Start read file ==========" << std::endl;
-
 	size_t coreSupportNumber = std::thread::hardware_concurrency();
 	ThreadPool::ThreadPool pool(coreSupportNumber);
 	std::vector<std::string> resultVector;
